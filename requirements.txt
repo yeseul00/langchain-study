@@ -1,0 +1,6 @@
+# LangChain 본체 (1.x 버전부터 create_agent 사용)
+langchain>=1.0
+# LangChain ↔ Ollama 연결
+langchain-ollama>=1.0
+# 브라우저 채팅 화면 (my-ai-buddy)
+streamlit>=1.40
