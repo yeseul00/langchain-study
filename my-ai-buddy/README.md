@@ -10,6 +10,7 @@ AI 동료 한 명을 Lv1부터 Lv5까지 키우면서 LangChain 에이전트를 
 | Lv3 | `lv3_sense.py` | 말뜻 알아듣기, 기분 눈치 | 임베딩 · 유사도 |
 | Lv4 | `lv4_memory.py` | 내 메모 기억하기 | RAG · 벡터 저장소 |
 | Lv5 | `lv5_office.py` | 전부 합친 첫 출근 | 완성형 에이전트 → ai office로 |
+| Lv6 | `lv6_chunk_lab.py` | 문서 잘라서 기억하기 | 청킹 · 부모 복원 · 미수록 기준 |
 
 ## 시작하기
 
@@ -40,6 +41,7 @@ streamlit run my-ai-buddy/lv1_talk.py    # 브라우저가 자동으로 열려�
 | 이름·성격·말투·규칙 | `buddy_config.py` |
 | 새 도구 추가 | `buddy_tools.py` (맨 아래 `TOOLS`에 추가) |
 | 동료가 기억할 자료 | `my_notes/` 폴더에 `.md` 파일 추가 |
+| Lv6 청킹 실험 원문 | `law_samples/` 폴더에 `.txt`·`.md` 추가 |
 
 `common.py`는 화면 꾸미기용이라 안 읽어도 됩니다.
 
@@ -48,8 +50,8 @@ streamlit run my-ai-buddy/lv1_talk.py    # 브라우저가 자동으로 열려�
 튜토리얼을 다 끝냈다면 이제 직접 키워 볼 차례예요.
 
 ```bash
-cp my-ai-buddy/lv_template.py my-ai-buddy/lv6_my_buddy.py
-python -m streamlit run my-ai-buddy/lv6_my_buddy.py
+cp my-ai-buddy/lv_template.py my-ai-buddy/lv7_my_buddy.py
+python -m streamlit run my-ai-buddy/lv7_my_buddy.py
 ```
 
 - 템플릿에서 ✏️ 표시된 곳(레벨 번호, 제목, 추가 지시, 도구 선택)만 바꾸면 돼요.

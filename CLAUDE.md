@@ -22,7 +22,7 @@
 
 사용자는 터미널 예제가 심심하다고 해서 이 코스로 진행 중이다. **질문이 오면 기본적으로 이 코스 기준으로 답한다.**
 
-- 실행: `langchain-study` 폴더에서 `streamlit run my-ai-buddy/lvN_*.py` (브라우저 채팅 화면)
+- 실행: `langchain-study` 폴더에서 `python -m streamlit run my-ai-buddy/app.py` — 모든 레벨이 한 앱에 묶여 있고 사이드바·튜토리얼 완료 버튼으로 레벨 이동 (개별 실행 `lvN_*.py`도 가능)
 - 화면 맨 위에 📖 단계별 튜토리얼(내용은 `my-ai-buddy/tutorials.py`)이 있고, 그 아래 🏆 도전 과제, 💡 원리 요약이 있다.
   사용자가 "튜토리얼 N단계"를 말하면 tutorials.py의 해당 레벨 리스트에서 그 단계(title/do/look/why)를 찾아 맥락을 맞춘다.
 - 답마다 🔧 도구 사용 기록, 👀 LLM에게 실제로 보낸 내용이 붙는다.
@@ -57,7 +57,8 @@
 - 새 대화는 `chat_area`가 돌려준 `live` 위에 `with live.container(border=True):`로 그린다.
 - 지난 대화는 `render_turn()`으로만 그린다. `for turn in turns:` 같은 시간순 출력을 새로 만들지 않는다.
 - 이 규칙은 **화면 표시 순서만** 바꾼다. LLM에게 보내는 지난 대화(`history_messages`)는 항상 시간순이어야 한다.
-- 새 레벨을 만들 때는 `my-ai-buddy/lv_template.py`를 복사해서 시작하도록 안내한다. 레벨 번호(LEVEL)는 겹치지 않게.
+- 새 레벨을 만들 때는 `my-ai-buddy/lv_template.py`를 복사해 `lv숫자_이름.py`로 저장하도록 안내한다. 이 이름 규칙을 지키면 `app.py`가 자동으로 레벨 목록에 추가한다. 레벨 번호(LEVEL)는 파일 이름 숫자와 같게, 다른 레벨과 겹치지 않게.
+- 레벨 이동은 `st.switch_page(common.PAGES[파일명])` (app.py로 실행했을 때만 PAGES가 채워짐).
 
 ## 실행 환경
 

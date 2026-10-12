@@ -81,7 +81,12 @@ def run_tutorial(level: int, steps: list[dict]) -> None:
             if step.get("prompt"):
                 st.session_state[f"lv{level}_pending"] = step["prompt"]
         last = i == len(steps) - 1
-        if next_col.button("완료 🎉" if last else "다음 ▶", disabled=last, key=f"{key}_next"):
+        if last:
+            # 마지막 단계: '완료'를 누르면 튜토리얼 완료로 표시하고 다음 레벨 안내를 보여 준다.
+            if next_col.button("완료 🎉", type="primary", key=f"{key}_done"):
+                st.session_state[f"lv{level}_tutorial_done"] = True
+                st.balloons()
+        elif next_col.button("다음 ▶", key=f"{key}_next"):
             st.session_state[key] = i + 1
             st.rerun()
 
@@ -90,8 +95,33 @@ def run_tutorial(level: int, steps: list[dict]) -> None:
         if step.get("why"):
             with st.expander("🤔 왜 그럴까? (해 본 다음 펼쳐 보세요)"):
                 st.markdown(step["why"])
-        if last:
-            st.success("튜토리얼 끝! 아래 🏆 도전 과제를 혼자 해 보거나 다음 레벨로 가세요.")
+        if last and st.session_state.get(f"lv{level}_tutorial_done"):
+            show_next_level(level)
+
+
+NEXT_LEVEL = {1: "lv2_hands.py", 2: "lv3_sense.py", 3: "lv4_memory.py", 4: "lv5_office.py", 5: "lv6_chunk_lab.py"}
+
+# app.py로 실행하면 레벨 페이지 목록이 여기 채워진다 (파일 이름 → 페이지).
+# 레벨 파일을 하나씩 따로 실행했다면 비어 있다.
+PAGES: dict = {}
+
+
+def show_next_level(level: int) -> None:
+    """튜토리얼을 끝냈을 때 다음 레벨로 가는 버튼(또는 명령어)을 보여 준다."""
+    nxt = NEXT_LEVEL.get(level)
+    if not nxt:
+        st.success("모든 레벨 튜토리얼 완료! 🎉 이제 나만의 레벨을 만들어 보세요.")
+        st.markdown("`lv_template.py`를 복사해 `lv7_이름.py`로 저장하면 레벨 목록에 자동으로 추가돼요.")
+        st.code("cp my-ai-buddy/lv_template.py my-ai-buddy/lv7_my_buddy.py", language="bash")
+        return
+
+    st.success(f"Lv{level} 튜토리얼 완료! 🎉 아래 🏆 도전 과제를 더 해 보거나 Lv{level + 1}로 넘어가세요.")
+    if nxt in PAGES:
+        if st.button(f"▶ Lv{level + 1}로 이동", type="primary", key=f"lv{level}_goto_next"):
+            st.switch_page(PAGES[nxt])
+    else:
+        st.markdown("이 레벨만 따로 실행 중이에요. 모든 레벨을 한 화면에서 쓰려면 `Ctrl+C`로 끄고:")
+        st.code("python -m streamlit run my-ai-buddy/app.py", language="bash")
 
 
 def pending_prompt(level: int) -> str | None:

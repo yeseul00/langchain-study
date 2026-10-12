@@ -1,9 +1,10 @@
 """🧩 나만의 레벨 템플릿 — 복사해서 새 레벨을 만드세요
 
 사용법:
-  1. 이 파일을 복사해서 새 이름으로 저장 (예: lv6_my_buddy.py)
-  2. 아래 ✏️ 표시된 곳만 바꾸기
-  3. 실행: python -m streamlit run my-ai-buddy/lv6_my_buddy.py
+  1. 이 파일을 복사해서 'lv숫자_이름.py'로 저장 (예: lv7_my_buddy.py)
+  2. 아래 ✏️ 표시된 곳만 바꾸기 (LEVEL 숫자는 파일 이름의 숫자와 같게)
+  3. app.py를 실행 중이면 브라우저를 새로고침 → 사이드바 레벨 목록에 자동으로 나타남
+     (따로 실행하려면: python -m streamlit run my-ai-buddy/lv7_my_buddy.py)
 
 화면 규칙은 common.chat_area()가 알아서 지켜 줍니다.
   - 입력창은 화면 맨 아래에 고정
@@ -20,7 +21,7 @@ from buddy_tools import TOOLS
 from common import chat_area, get_embeddings, get_llm, run_agent
 
 # ✏️ 1) 레벨 번호와 제목 — 번호는 다른 레벨과 겹치지 않게 (대화 기록 저장 칸 이름으로 쓰임)
-LEVEL = 6
+LEVEL = 7
 TITLE = "나만의 동료"
 
 # ✏️ 2) 이번 레벨에서 동료에게 줄 추가 지시

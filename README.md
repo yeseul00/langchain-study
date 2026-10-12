@@ -2,7 +2,7 @@
 
 > ### 🐹 추천 코스: [내 AI 동료 만들기](my-ai-buddy/README.md)
 > 같은 개념을 **브라우저 채팅 화면 + 레벨·미션** 방식으로 배웁니다. 처음이라면 이쪽부터!
-> `pip install -r requirements.txt` 후 `streamlit run my-ai-buddy/lv1_talk.py`
+> `pip install -r requirements.txt` 후 `python -m streamlit run my-ai-buddy/app.py`
 >
 > 아래 00~05 폴더는 터미널에서 돌리는 기본 예제입니다. 동료 만들기를 하다가 코드만 따로 보고 싶을 때 참고하세요.
 
