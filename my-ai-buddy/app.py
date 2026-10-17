@@ -28,7 +28,7 @@ BUILTIN_TITLES = {
 
 # 레벨을 옮겨 다녀도 사이드바 설정·미션 체크가 지워지지 않게 붙잡아 둔다.
 # (Streamlit은 화면에 없는 위젯의 값을 지우기 때문)
-_KEEP = re.compile(r"^lv\d+_(name|avatar|role|personality|speech|remember|temp|tool_\w+|query|feeling|probe|text|source|method|size|overlap|prefix|k|m\d+)$")
+_KEEP = re.compile(r"^lv\d+_(name|avatar|role|personality|speech|remember|temp|tool_\w+|query|feeling|probe|text|source|dir|mode|method|size|overlap|prefix|k|m\d+)$")
 for k in [k for k in st.session_state.keys() if _KEEP.match(str(k))]:
     st.session_state[k] = st.session_state[k]
 
